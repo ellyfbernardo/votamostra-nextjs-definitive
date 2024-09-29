@@ -174,3 +174,15 @@
   display: flex;
   margin-right: 12px;
 }
+
+.submitButton{
+     width: 95%;
+     height: 4rem;
+     padding: 10px;
+     background-color: #F36464;
+     color: #FFF;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     margin-left: 0.5rem;
+}
