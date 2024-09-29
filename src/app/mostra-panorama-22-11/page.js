@@ -1,0 +1,29 @@
+import Link from "next/link"
+import styles from "./page.module.css";
+import MovieCard from "../components/moviecard/moviecard";
+import filme1 from '../assets/filme1.webp';
+import filme2 from '../assets/filme2.webp';
+import filme3 from '../assets/filme3.webp';
+export default function VoteList(){
+     return( 
+     <>
+        <header>
+          <h1>Faça seu voto</h1>
+        </header>
+        <main>
+          <MovieCard
+
+          title1={"O DIA QUE TE CONHECI"}
+          description1={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
+          
+          title2={"ESTRANHO CAMINHO"}
+          description2={"FICÇÃO, 83 MIN, CE, 2023, 12 ANOS DIREÇÃO: GUTO PARENTE"}
+  
+          title3={"QUANDO EU ME ENCONTRAR"}
+          description3={"FICÇÃO, 77 MIN, CE, 2023, 10 ANOS DIREÇÃO: AMANDA PONTES E MICHELLINE HELENA"}
+          />
+
+          
+        </main>
+     </>
+     )}
