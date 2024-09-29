@@ -2,9 +2,9 @@
 
 
 import Link from 'next/link';
-
-
 import { useEffect, useState } from 'react';
+import { Prevote } from '@/app/components/prevote/prevote';
+
 export default function Confirmeseuvoto(){
      
 
@@ -22,25 +22,37 @@ export default function Confirmeseuvoto(){
                <main>
 
                <div>
-               <h1>Resultados da Votação</h1>
-               {votos ? (
-                <ul>
-                    <li>Filme 1: {votos.filme1}</li>
-                    <li>Filme 2: {votos.filme2}</li>
-                    <li>Filme 3: {votos.filme3}</li>
-                </ul>
-               ) : (
-                <p>Nenhum voto foi registrado.</p>
-               )}
+                <h1>Resultados da Votação</h1>
+                {!votos ? (
+                    
+                    <p>Nenhum voto foi registrado.</p>
+
+                ) : (
+
+                    <ul>
+                        <li>Filme 1: {votos.filme1}</li>
+                        <li>Filme 2: {votos.filme2}</li>
+                        <li>Filme 3: {votos.filme3}</li>
+                        <Prevote
+                            title={"O DIA QUE TE CONHECI"}
+                            description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
+                            vote={votos.filme1}
+                        />
+                        <Prevote
+                            title={"ESTRANHO CAMINHO"}
+                            description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
+                            vote={votos.filme2}
+                        />
+                        <Prevote
+                            title={"QUANDO EU ME ENCONTRAR"}
+                            description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
+                            vote={votos.filme3}
+                        />
+
+                    </ul>
+                )}
                </div>
-               
-
-                    <Link href="/mostra-panorama-22-11">
-                    <h2>EDITAR SEU VOTO</h2>
-                    </Link>
-
-
-
+            
                </main>
           </>
 )}
