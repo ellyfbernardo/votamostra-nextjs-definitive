@@ -15,12 +15,16 @@ export default function VoteList(){
 
           title1={"O DIA QUE TE CONHECI"}
           description1={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
-          
+          filme1={filme1}
+
           title2={"ESTRANHO CAMINHO"}
           description2={"FICÇÃO, 83 MIN, CE, 2023, 12 ANOS DIREÇÃO: GUTO PARENTE"}
+          filme2={filme2}
   
           title3={"QUANDO EU ME ENCONTRAR"}
           description3={"FICÇÃO, 77 MIN, CE, 2023, 10 ANOS DIREÇÃO: AMANDA PONTES E MICHELLINE HELENA"}
+          filme3={filme3}
+          
           />
 
           

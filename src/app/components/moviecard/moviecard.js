@@ -1,77 +1,3 @@
-// "use client";
-
-// import emote1 from '../../assets/emote1.png';
-// import emote2 from '../../assets/emote2.png';
-// import emote3 from '../../assets/emote3.png';
-// import emote4 from '../../assets/emote4.webp';
-// import emote5 from '../../assets/emote5.png';
-
-// import { useState, useEffect } from 'react';
-
-// import style from'./moviecard.module.css'
-// import Image from 'next/image';
-
-
-
-// const MovieCard = (props) => {
-     
-
-  
-//   return (
-
-// <div className={style.container_flex}>
-  
-//      <div className={style.container}>
-//           <header className={style.header}>
-//                <Image src={props.img} alt="" className={style.movie_image}/>
-//           </header>
-//                <h2 className={style.title}>{props.title}</h2>
-//                <p className={style.description}>{props.description}</p>
-//             <div className={'container-list'}> 
-//                 <div className={style.option}>
-//                     <div className={style.square}>
-//                       <p>5</p>
-//                     </div>
-//                     <div>
-//                       <Image src={emote5} className={style.emote}
-//                       alt="" />
-//                     </div>
-//                   </div>
-                
-//                 <div className={style.option}>
-//                   <div className={style.square}>
-//                     <p>4</p>
-//                   </div><div>
-//                   <Image src={emote4} className={style.emote} alt="" /></div>
-//                 </div>
-//                 <div className={style.option}>
-//                   <div className={style.square}>
-//                     <p>3</p>
-//                   </div><div>
-//                   <Image src={emote3} className={style.emote} alt="" /></div>
-//                 </div>
-//                 <div className={style.option}>
-//                   <div className={style.square}>
-//                     <p>2</p>
-//                   </div><div>
-//                   <Image src={emote2} className={style.emote} alt="" /></div>
-//                 </div>
-//                 <div className={style.option}>
-//                   <div className={style.square}>
-//                     <p>1</p>
-//                   </div><div>
-//                   <Image src={emote1} className={style.emote} alt="" /></div>
-//                 </div>
-//             </div>
-//       </div>
-// </div> 
-
-// );
-// };
-
-// export default MovieCard;
-
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -133,7 +59,7 @@ const MovieCard = (props) => {
       {['filme1',].map((topico, index) => (
         <div key={index} className={style.container}>
           <h3 className={style.title}>{props.title1}</h3>
-          <Image src={filme} alt="" className={style.movie_image}
+          <Image src={props.filme1} alt="" className={style.movie_image}
           />
           <p className={style.description}>{props.description1}</p>
 
@@ -165,7 +91,7 @@ const MovieCard = (props) => {
       {['filme2',].map((topico, index) => (
         <div key={index} className={style.container}>
           <h3 className={style.title}>{props.title2}</h3>
-          <Image src={filme} alt="" className={style.movie_image}
+          <Image src={props.filme2} alt="" className={style.movie_image}
           />
           <p className={style.description}>{props.description2}</p>
 
@@ -195,7 +121,7 @@ const MovieCard = (props) => {
       {['filme3',].map((topico, index) => (
         <div key={index} className={style.container}>
           <h3 className={style.title}>{props.title3}</h3>
-          <Image src={filme} alt="" className={style.movie_image}
+          <Image src={props.filme3} alt="" className={style.movie_image}
           />
           <p className={style.description}>{props.description3}</p>
 
@@ -220,9 +146,12 @@ const MovieCard = (props) => {
         </div>
       ))}
     </div>
-      <button onClick={handleSubmit} className={style.submitButton}>
-        Submeter Votos
-      </button>
+
+    <footer className={style.footer}>
+        <button onClick={handleSubmit} className={style.submitButton}>
+          Submeter Votos
+        </button>
+      </footer>
     </>
   );
 };
