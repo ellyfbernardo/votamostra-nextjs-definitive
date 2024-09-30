@@ -28,28 +28,26 @@ export default function Confirmeseuvoto(){
                     <p>Nenhum voto foi registrado.</p>
 
                 ) : (
-
-                    <ul>
-                        <li>Filme 1: {votos.filme1}</li>
-                        <li>Filme 2: {votos.filme2}</li>
-                        <li>Filme 3: {votos.filme3}</li>
-                        <Prevote
+                        <>
+                            {votos.filme1 == null ? <div></div> : <Prevote 
                             title={"O DIA QUE TE CONHECI"}
                             description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
                             vote={votos.filme1}
-                        />
-                        <Prevote
+                            /> }
+
+                            {votos.filme2 == null ? <div></div> : <Prevote 
                             title={"ESTRANHO CAMINHO"}
                             description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
                             vote={votos.filme2}
-                        />
-                        <Prevote
+                            /> }
+
+
+                            {votos.filme3 == null ? <div></div> : <Prevote 
                             title={"QUANDO EU ME ENCONTRAR"}
                             description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
                             vote={votos.filme3}
-                        />
-
-                    </ul>
+                            /> }
+                        </>
                 )}
                </div>
             
