@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styles from "./page.module.css";
+import style from "./page.module.css";
 import MovieCard from "../components/moviecard/moviecard";
 import filme1 from '../assets/filme1.webp';
 import filme2 from '../assets/filme2.webp';
@@ -7,7 +7,7 @@ import filme3 from '../assets/filme3.webp';
 export default function VoteList(){
      return( 
      <>
-        <header>
+        <header className={style.title}>
           <h1>Faça seu voto</h1>
         </header>
         <main>
