@@ -1,12 +1,9 @@
 "use client";
 
 import style from './confirmeseuvoto.module.css';
-
 import { useEffect, useState } from 'react';
 import { Prevote } from '@/app/components/prevote/prevote';
-
 import Link from 'next/link';
-
 import filmepng1 from '../../assets/filme1.webp';
 import filmepng2 from '../../assets/filme2.webp';
 import filmepng3 from '../../assets/filme3.webp';
@@ -29,37 +26,31 @@ export default function Confirmeseuvoto() {
           <p className={style.paragraph}>Carregando votos...</p>
         ) : (
           <>
-            {votos?.filme1 ? (
+            {votos?.filme1 && (
               <Prevote
                 title="O DIA QUE TE CONHECI"
-                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
-                vote={votos.filme1}
+                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
+                vote={votos?.filme1}
                 foto={filmepng1}
               />
-            ) : (
-              <div></div>
             )}
 
-            {votos?.filme2 ? (
+            {votos?.filme2 && (
               <Prevote
                 title="ESTRANHO CAMINHO"
-                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
-                vote={votos.filme2}
+                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
+                vote={votos?.filme2}
                 foto={filmepng2}
               />
-            ) : (
-              <div></div>
             )}
 
-            {votos?.filme3 ? (
+            {votos?.filme3 && (
               <Prevote
                 title="QUANDO EU ME ENCONTRAR"
-                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
-                vote={votos.filme3}
+                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
+                vote={votos?.filme3}
                 foto={filmepng3}
               />
-            ) : (
-              <div></div>
             )}
           </>
         )}
@@ -69,10 +60,10 @@ export default function Confirmeseuvoto() {
             EDITAR VOTO
           </Link>
 
-          {(votos?.filme1 || votos?.filme2 || votos?.filme3) ? (
-            <Link className={style.button} href={"/mostra-panorama-22-11/confirmeseuvoto/finalizar"}>CONTINUAR</Link>
-          ) : (
-            <div></div>
+          {(votos?.filme1 || votos?.filme2 || votos?.filme3) && (
+            <Link className={style.button} href="/mostra-panorama-22-11/confirmeseuvoto/finalizar">
+              CONTINUAR
+            </Link>
           )}
         </footer>
       </main>
