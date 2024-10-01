@@ -1,56 +1,81 @@
 "use client";
 
+import style from './confirmeseuvoto.module.css';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Prevote } from '@/app/components/prevote/prevote';
 
-export default function Confirmeseuvoto(){
-     
+import Link from 'next/link';
 
-     const [votos, setVotos] = useState(null);
+import filmepng1 from '../../assets/filme1.webp';
+import filmepng2 from '../../assets/filme2.webp';
+import filmepng3 from '../../assets/filme3.webp';
 
-     useEffect(() => {
-         const votosArmazenados = localStorage.getItem('votos');
-         if (votosArmazenados) {
-             setVotos(JSON.parse(votosArmazenados));
-         }
-     }, []);
+export default function Confirmeseuvoto() {
+  const [votos, setVotos] = useState(null);
 
-     return( 
+  useEffect(() => {
+    const votosArmazenados = localStorage.getItem('votos');
+    if (votosArmazenados) {
+      setVotos(JSON.parse(votosArmazenados));
+    }
+  }, []);
+
+  return (
+    <>
+      <main>
+        <h2 className={style.title}>REVISE SEU VOTO</h2>
+        {!votos ? (
+          <p className={style.paragraph}>Carregando votos...</p>
+        ) : (
           <>
-               <main>
+            {votos?.filme1 ? (
+              <Prevote
+                title="O DIA QUE TE CONHECI"
+                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
+                vote={votos.filme1}
+                foto={filmepng1}
+              />
+            ) : (
+              <div></div>
+            )}
 
-               <div>
-                <h1>Resultados da Votação</h1>
-                {!votos ? (
-                    
-                    <p>Nenhum voto foi registrado.</p>
+            {votos?.filme2 ? (
+              <Prevote
+                title="ESTRANHO CAMINHO"
+                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
+                vote={votos.filme2}
+                foto={filmepng2}
+              />
+            ) : (
+              <div></div>
+            )}
 
-                ) : (
-                        <>
-                            {votos.filme1 == null ? <div></div> : <Prevote 
-                            title={"O DIA QUE TE CONHECI"}
-                            description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
-                            vote={votos.filme1}
-                            /> }
-
-                            {votos.filme2 == null ? <div></div> : <Prevote 
-                            title={"ESTRANHO CAMINHO"}
-                            description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
-                            vote={votos.filme2}
-                            /> }
-
-
-                            {votos.filme3 == null ? <div></div> : <Prevote 
-                            title={"QUANDO EU ME ENCONTRAR"}
-                            description={"FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"}
-                            vote={votos.filme3}
-                            /> }
-                        </>
-                )}
-               </div>
-            
-               </main>
+            {votos?.filme3 ? (
+              <Prevote
+                title="QUANDO EU ME ENCONTRAR"
+                description="FICÇÃO, 70MIN, MG, 2023, 14 ANOS DIREÇÃO ANDRÉ NOVAIS OLIVEIRA"
+                vote={votos.filme3}
+                foto={filmepng3}
+              />
+            ) : (
+              <div></div>
+            )}
           </>
-)}
+        )}
+
+        <footer className={style.footer}>
+          <Link className={style.button} href="/mostra-panorama-22-11">
+            EDITAR VOTO
+          </Link>
+
+          {(votos?.filme1 || votos?.filme2 || votos?.filme3) ? (
+            <Link className={style.button} href={"/mostra-panorama-22-11/confirmeseuvoto/finalizar"}>CONTINUAR</Link>
+          ) : (
+            <div></div>
+          )}
+        </footer>
+      </main>
+    </>
+  );
+}

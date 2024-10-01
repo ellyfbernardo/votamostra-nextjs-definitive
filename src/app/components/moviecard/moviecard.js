@@ -34,8 +34,11 @@ const MovieCard = (props) => {
   };
 
   useEffect(() => {
-     console.log('Votos atuais:', votos);
-   }, [votos]);
+    const votosArmazenados = localStorage.getItem('votos');
+    if (votosArmazenados) {
+      setVotos(JSON.parse(votosArmazenados));
+    }
+  }, []);
 
 
 
