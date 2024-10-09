@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import style from './finalizar.module.css';
 
@@ -49,6 +50,7 @@ export default function VoteList() {
         />
         <button className={style.button} type="submit">VOTAR</button>
       </form>
+      <Link href="/">Voltar para tela inicial</Link>
     </div>
   );
 }
