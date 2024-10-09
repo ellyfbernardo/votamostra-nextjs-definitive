@@ -1,38 +1,51 @@
 "use client";
 
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import style from './finalizar.module.css';
 
-function formatCPF(cpf) {
-  const cleaned = cpf.replace(/\D/g, '');
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})(\d{2})$/);
-  if (match) {
-    return `${match[1]}.${match[2]}.${match[3]}-${match[4]}`;
-  }
-  return cleaned;
-}
-
 export default function VoteList() {
   const [cpf, setCpf] = useState('');
-  const [votos, setVotos] = useState(null);
+  const [votos, setVotos] = useState({ filme1: '', filme2: '', filme3: '' });
 
   useEffect(() => {
-    const votosArmazenados = localStorage.getItem('votos');
-    if (votosArmazenados) {
-      setVotos(JSON.parse(votosArmazenados));
-    }
+    // Carrega os votos do Local Storage
+    const storedVotes = JSON.parse(localStorage.getItem('votos')) || {
+      filme1: '',
+      filme2: '',
+      filme3: ''
+    };
+    
+    setVotos(storedVotes); // Atualiza o estado com os votos resgatados
+    console.log('Stored Votes:', storedVotes); // Verifica os votos recuperados
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`CPF submetido: ${cpf} \n Votos: \n Filme 1: ${votos?.filme1}\n Filme 2: ${votos?.filme2}\n Filme 3: ${votos?.filme3}`);
-    setCpf(''); // Limpa o campo de CPF após a submissão
-  };
 
-  const handleChange = (e) => {
-    const formattedCPF = formatCPF(e.target.value);
-    setCpf(formattedCPF);
+    try {
+      const res = await fetch('/api/saveVote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cpf,
+          filme1: votos.filme1,
+          filme2: votos.filme2,
+          filme3: votos.filme3,
+        }),
+      });
+
+      if (res.ok) {
+        alert('Voto submetido com sucesso!');
+        setCpf(''); // Limpa o campo de CPF
+        setVotos({ filme1: '', filme2: '', filme3: '' }); // Limpa os votos
+      } else {
+        alert('Erro ao submeter o voto.');
+      }
+    } catch (error) {
+      console.error('Erro ao submeter o voto:', error);
+    }
   };
 
   return (
@@ -43,14 +56,13 @@ export default function VoteList() {
           className={style.input}
           type="text"
           value={cpf}
-          onChange={handleChange}
+          onChange={(e) => setCpf(e.target.value)} // Atualiza o estado do CPF
           placeholder="Digite seu CPF"
-          maxLength="14" // Limita o tamanho para o formato 000.000.000-00
+          maxLength="14"
           required
         />
         <button className={style.button} type="submit">VOTAR</button>
       </form>
-      <Link href="/">Voltar para tela inicial</Link>
     </div>
   );
 }
