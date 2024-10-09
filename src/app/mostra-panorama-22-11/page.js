@@ -9,10 +9,10 @@ import filme3 from '../assets/filme3.webp';
 
 export default function VoteList() {
 
-  useEffect(() => {
-    // Limpa o localStorage ao carregar a tela inicial
-    localStorage.removeItem('votos');
-  }, []);
+  // useEffect(() => {
+  //    Limpa o localStorage ao carregar a tela inicial
+  //   localStorage.removeItem('votos');
+  // }, []);
 
   return (
     <>
