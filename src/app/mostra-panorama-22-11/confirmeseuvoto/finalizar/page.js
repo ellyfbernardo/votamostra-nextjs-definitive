@@ -16,7 +16,6 @@ export default function VoteList() {
     };
     
     setVotos(storedVotes); // Atualiza o estado com os votos resgatados
-    console.log('Stored Votes:', storedVotes); // Verifica os votos recuperados
   }, []);
 
   const handleSubmit = async (e) => {
@@ -40,6 +39,8 @@ export default function VoteList() {
         alert('Voto submetido com sucesso!');
         setCpf(''); // Limpa o campo de CPF
         setVotos({ filme1: '', filme2: '', filme3: '' }); // Limpa os votos
+      } else if (res.status === 409) {
+        alert('Esse CPF já votou.');
       } else {
         alert('Erro ao submeter o voto.');
       }
@@ -52,15 +53,19 @@ export default function VoteList() {
     <div className={style.container}>
       <h1 className={style.h1}>Digite seu CPF</h1>
       <form className={style.form} onSubmit={handleSubmit}>
-        <input
-          className={style.input}
-          type="text"
-          value={cpf}
-          onChange={(e) => setCpf(e.target.value)} // Atualiza o estado do CPF
-          placeholder="Digite seu CPF"
-          maxLength="14"
-          required
-        />
+      <input
+        className={style.input}
+        type="text" // Mantenha como 'text' para evitar problemas com o maxlength
+        value={cpf}
+        onChange={(e) => {
+          // Filtra apenas números
+          const value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for dígito
+          setCpf(value); // Atualiza o estado do CPF
+        }}
+        placeholder="Digite seu CPF"
+        maxLength="11" // CPF tem 11 dígitos
+        required
+      />
         <button className={style.button} type="submit">VOTAR</button>
       </form>
     </div>
