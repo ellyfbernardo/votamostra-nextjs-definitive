@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { DateTime } from 'luxon'; // Importa o luxon
 import style from './finalizar.module.css';
 
 export default function VoteList() {
@@ -21,6 +22,9 @@ export default function VoteList() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Captura o horário atual ajustado para o fuso horário de Brasília
+    const timestamp = DateTime.now().setZone('America/Sao_Paulo').toISO();
+
     try {
       const res = await fetch('/api/saveVote', {
         method: 'POST',
@@ -32,6 +36,7 @@ export default function VoteList() {
           filme1: votos.filme1,
           filme2: votos.filme2,
           filme3: votos.filme3,
+          timestamp, // Inclui o horário ajustado para o fuso de Brasília
         }),
       });
 
@@ -53,19 +58,19 @@ export default function VoteList() {
     <div className={style.container}>
       <h1 className={style.h1}>Digite seu CPF</h1>
       <form className={style.form} onSubmit={handleSubmit}>
-      <input
-        className={style.input}
-        type="text" // Mantenha como 'text' para evitar problemas com o maxlength
-        value={cpf}
-        onChange={(e) => {
-          // Filtra apenas números
-          const value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for dígito
-          setCpf(value); // Atualiza o estado do CPF
-        }}
-        placeholder="Digite seu CPF"
-        maxLength="11" // CPF tem 11 dígitos
-        required
-      />
+        <input
+          className={style.input}
+          type="text" // Mantenha como 'text' para evitar problemas com o maxlength
+          value={cpf}
+          onChange={(e) => {
+            // Filtra apenas números
+            const value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for dígito
+            setCpf(value); // Atualiza o estado do CPF
+          }}
+          placeholder="Digite seu CPF"
+          maxLength="11" // CPF tem 11 dígitos
+          required
+        />
         <button className={style.button} type="submit">VOTAR</button>
       </form>
     </div>
